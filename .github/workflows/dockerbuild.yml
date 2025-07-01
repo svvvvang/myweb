@@ -21,5 +21,5 @@ jobs:
 
       - name: Build and push Docker image
         run: |
-          docker build -t svvvvang/myweb:latest .
-          docker push svvvvang/myweb:latest
+          docker build -t revvver/myweb:latest .
+          docker push revvver/myweb:latest
