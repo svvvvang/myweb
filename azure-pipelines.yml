@@ -3,27 +3,29 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/docker
 
 trigger:
-- main
+- main  # Change this to your default branch
 
-resources:
-- repo: self
+pool:
+  vmImage: 'ubuntu-latest'
 
-variables:
-  tag: '$(Build.BuildId)'
+jobs:
+- job: Build
+  displayName: 'Build Job'
+  steps:
+  - script: echo Building the application...
+    displayName: 'Build Step'
 
-stages:
-- stage: Build
-  displayName: Build image
-  jobs:
-  - job: Build
-    displayName: Build
-    pool:
-      vmImage: ubuntu-latest
-    steps:
-    - task: Docker@2
-      displayName: Build an image
-      inputs:
-        command: build
-        dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
-        tags: |
-          $(tag)
+- job: Test
+  displayName: 'Test Job'
+  dependsOn: Build  # This job will run after the Build job
+  steps:
+  - script: echo Running tests...
+    displayName: 'Test Step'
+
+- job: Deploy
+  displayName: 'Deploy Job'
+  dependsOn: Test  # This job will run after the Test job
+  steps:
+  - script: echo Deploying the application...
+    displayName: 'Deploy Step'
+
