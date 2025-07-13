@@ -10,7 +10,7 @@ pool:
 
 variables:
   dockerRegistryServiceConnection: 'DockerHub'  # Name of your Docker Hub service connection
-  imageName: 'revvver/mywebazure'  # Replace with your Docker Hub image name
+  imageName: 'revvver/mywebazure' # Replace with your Docker Hub image name
 
 jobs:
 - job: Build
