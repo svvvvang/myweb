@@ -11,7 +11,7 @@ COPY ./html /usr/share/nginx/html
 RUN chown -R nginx:nginx /usr/share/nginx/html /var/cache/nginx /var/log/nginx
 
 # Expose the port Nginx will run on
-EXPOSE 80
+EXPOSE 8080
 
 # Copy the custom Nginx configuration file
 COPY nginx.conf /etc/nginx/nginx.conf
